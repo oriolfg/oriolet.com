@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mis Compras Top - Productes Recomanats</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+      }
+
+      .header h1 {
+        font-size: 3rem;
+        color: #2c3e50;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: #7f8c8d;
+      }
+
+      .categories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .category-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .category-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .category-title {
+        font-size: 1.8rem;
+        color: #2c3e50;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #3498db;
+        text-align: center;
+      }
+
+      .products-list {
+        list-style: none;
+      }
+
+      .product-item {
+        margin-bottom: 15px;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #3498db;
+        transition: all 0.3s ease;
+      }
+
+      .product-item:hover {
+        background: #e3f2fd;
+        transform: translateX(5px);
+      }
+
+      .product-link {
+        text-decoration: none;
+        color: #2c3e50;
+        font-weight: 500;
+        display: block;
+        padding: 10px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .product-link:hover {
+        background: #3498db;
+        color: white;
+        transform: scale(1.02);
+      }
+
+      .product-image-placeholder {
+        width: 100%;
+        aspect-ratio: 1/1;
+        background: linear-gradient(45deg, #ddd, #f0f0f0);
+        border-radius: 8px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+        font-size: 0.9rem;
+        overflow: hidden;
+      }
+
+      /* Estils per a imatges reals quan les substitueixis */
+      .product-image-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 8px;
+      }
+
+      .product-price {
+        background: #27ae60;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 8px;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 40px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        color: #7f8c8d;
+      }
+
+      .disclaimer {
+        background: #fff3cd;
+        border: 1px solid #ffeaa7;
+        color: #856404;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 2rem;
+        }
+
+        .categories-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .container {
+          padding: 10px;
+        }
+      }
+
+      .category-icon {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>🛒 Mis Compras Top</h1>
+        <p>Descobreix els millors productes seleccionats per a tu</p>
+      </header>
+
+      <div class="disclaimer">
+        <strong>⚠️ Avís:</strong> Aquesta pàgina conté enllaços d'afiliats. Si
+        compres a través d'aquests enllaços, podríem rebre una petita comissió
+        sense cost addicional per a tu.
+      </div>
+
+      <div class="categories-grid">
+        <!-- Domòtica -->
+        <div class="category-card">
+          <div class="category-icon">🏠</div>
+          <h2 class="category-title">Domòtica</h2>
+          <ul class="products-list">
+            <li class="product-item">
+              <div class="product-image-placeholder">
+                <img src="./media/shelly.png" alt="Shelly 1 Mini Gen3" />
+              </div>
+              <a
+                href="https://amzn.to/47Lc1Tp"
+                class="product-link"
+                target="_blank"
+              >
+                Pack 2x Shelly 1 Mini Gen3
+              </a>
+              <div class="product-price">€28.32</div>
+            </li>
+            <li class="product-item">
+              <div class="product-image-placeholder">
+                <img src="./media/ups.png" alt="SAI Mini UPS" />
+              </div>
+              <a
+                href="https://amzn.to/47bW4Wc"
+                class="product-link"
+                target="_blank"
+              >
+                SAI Mini UPS Entrada AC Salida 5V USB 5V 9V 12V DC 2A (37Wh)
+              </a>
+              <div class="product-price">69.99</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tecnologia -->
+        <div class="category-card">
+          <div class="category-icon">💻</div>
+          <h2 class="category-title">Tecnologia</h2>
+          <ul class="products-list">
+            <li class="product-item">
+              <div class="product-image-placeholder">
+                <img src="./media/firestick.jpg" alt="Fire stick" />
+              </div>
+              <a
+                href="https://amzn.to/45T5gMG"
+                class="product-link"
+                target="_blank"
+              >
+                Amazon Fire TV Stick 4K Max
+              </a>
+              <div class="product-price">79.99</div>
+            </li>
+            <li class="product-item">
+              <div class="product-image-placeholder">
+                <img src="./media/echo.jpg" alt="Echo Dot" />
+              </div>
+              <a
+                href="https://amzn.to/3HGJ94j"
+                class="product-link"
+                target="_blank"
+              >
+                Echo Dot (5ª Gen)
+              </a>
+              <div class="product-price">64.99</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Jocs de Taula -->
+        <div class="category-card">
+          <div class="category-icon">🎲</div>
+          <h2 class="category-title">Jocs de Taula</h2>
+          <ul class="products-list">
+            <li class="product-item">
+              <div class="product-image-placeholder">
+                <img src="./media/catan.jpg" alt="Catan" />
+              </div>
+              <a
+                href="https://amzn.to/3ViLSUz"
+                class="product-link"
+                target="_blank"
+              >
+                CATAN
+              </a>
+              <div class="product-price">38.00</div>
+            </li>
+            <li class="product-item">
+              <div class="product-image-placeholder">
+                <img src="./media/carcassonne.jpg" alt="carcassonne" />
+              </div>
+              <a
+                href="https://amzn.to/3HvrDzZ"
+                class="product-link"
+                target="_blank"
+              >
+                Carcassonne
+              </a>
+              <div class="product-price">29.99</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Lectura Conscient -->
+        <div class="category-card">
+          <div class="category-icon">📚</div>
+          <h2 class="category-title">Lectura Conscient</h2>
+          <ul class="products-list">
+            <li class="product-item">
+              <div class="product-image-placeholder">
+                <img src="./media/aixonoessexe.jpg" alt="aixonoessexe" />
+              </div>
+              <a
+                href="https://amzn.to/41WmQhF"
+                class="product-link"
+                target="_blank"
+              >
+                Això no és sexe: Una altra educació sexual és urgent! (No
+                Ficció)
+              </a>
+              <div class="product-price">14.99</div>
+            </li>
+            <li class="product-item">
+              <div class="product-image-placeholder">
+                <img src="./media/aixonoesamor.jpg" alt="aixonoesamor" />
+              </div>
+              <a
+                href="https://amzn.to/47NK1yw"
+                class="product-link"
+                target="_blank"
+              >
+                Això no és amor: 30 reptes per treballar la igualtat (No Ficció)
+              </a>
+              <div class="product-price">12.95</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Moda -->
+        <div class="category-card">
+          <div class="category-icon">👗</div>
+          <h2 class="category-title">Moda</h2>
+          <ul class="products-list">
+            <li class="product-item">
+              <div class="product-image-placeholder">
+                <img src="./media/burlington.jpg" alt="burlington" />
+              </div>
+              <a
+                href="https://amzn.to/3HSeq47"
+                class="product-link"
+                target="_blank"
+              >
+                Mitjons Burlington
+              </a>
+              <div class="product-price">17.00</div>
+            </li>
+            <li class="product-item">
+              <div class="product-image-placeholder">
+                <img src="./media/burlingtonclyde.jpg" alt="burlingtonclyde" />
+              </div>
+              <a
+                href="https://amzn.to/4fWCZK2"
+                class="product-link"
+                target="_blank"
+              >
+                Mitjons Burlington Clyde
+              </a>
+              <div class="product-price">11.00</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Cuina -->
+        <div class="category-card">
+          <div class="category-icon">🍳</div>
+          <h2 class="category-title">Cuina</h2>
+          <ul class="products-list">
+            <li class="product-item">
+              <div class="product-image-placeholder">
+                <img src="./media/paella.jpg" alt="paella" />
+              </div>
+              <a
+                href="https://amzn.to/4mE3Qx0"
+                class="product-link"
+                target="_blank"
+              >
+                Paella acer inoxidable 28cm
+              </a>
+              <div class="product-price">44.99</div>
+            </li>
+            <li class="product-item">
+              <div class="product-image-placeholder">
+                <img src="./media/flash.jpg" alt="flash" />
+              </div>
+              <a
+                href="https://amzn.to/4fR0nZa"
+                class="product-link"
+                target="_blank"
+              >
+                200 bosses de gelats sense BPA
+              </a>
+              <div class="product-price">14.99</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Bricolatge -->
+        <div class="category-card">
+          <div class="category-icon">🔨</div>
+          <h2 class="category-title">Bricolatge</h2>
+          <ul class="products-list">
+            <li class="product-item">
+              <div class="product-image-placeholder">
+                <img src="./media/brocas.jpg" alt="broques" />
+              </div>
+              <a
+                href="https://amzn.to/3JUd3T6"
+                class="product-link"
+                target="_blank"
+              >
+                Joc de broques de Carbur 5 peces
+              </a>
+              <div class="product-price">16.99</div>
+            </li>
+            <li class="product-item">
+              <div class="product-image-placeholder">
+                <img src="./media/makita.jpg" alt="makita" />
+              </div>
+              <a
+                href="https://amzn.to/3HvrWuD"
+                class="product-link"
+                target="_blank"
+              >
+                Makita taladro atornillador 12V 2Ah
+              </a>
+              <div class="product-price">185.99</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>&copy; 2025 Mis Compras Top - Tots els drets reservats</p>
+        <p>
+          <small
+            >Els preus i disponibilitat poden variar. Els enllaços són
+            d'afiliats.</small
+          >
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      // Afegir efectes interactius
+      document.addEventListener("DOMContentLoaded", function () {
+        // Afegir efecte de scroll suau
+        const links = document.querySelectorAll('a[href^="#"]');
+        links.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+
+        // Afegir efecte de loading als enllaços
+        const productLinks = document.querySelectorAll(".product-link");
+        productLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            this.style.transform = "scale(0.95)";
+            setTimeout(() => {
+              this.style.transform = "scale(1)";
+            }, 150);
+          });
+        });
+
+        // Afegir animació d'entrada
+        const cards = document.querySelectorAll(".category-card");
+        cards.forEach((card, index) => {
+          card.style.opacity = "0";
+          card.style.transform = "translateY(20px)";
+          setTimeout(() => {
+            card.style.transition = "all 0.6s ease";
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+          }, index * 100);
+        });
+      });
+    </script>
+  </body>
+</html>
